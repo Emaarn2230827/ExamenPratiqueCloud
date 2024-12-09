@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '../Components/header';
@@ -7,7 +6,6 @@ import init from '../common/init';
 import {onAuthStateChanged} from "firebase/auth"
 import { collection, addDoc} from "firebase/firestore"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
 
 export default function AddTask() {
     const { db } = init();
@@ -71,8 +69,6 @@ export default function AddTask() {
             setError('An error occurred');
         }
     };
-    
-
     return (
         <>
             <Header />

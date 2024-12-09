@@ -1,12 +1,9 @@
 "use client";
-
 import React from 'react';
-import Link from 'next/link';
 import init from '../common/init';
 import {  deleteDoc, doc, getDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation";
 import { getStorage, ref, deleteObject } from "firebase/storage";
-
 
 function MovieCard({ id, titre, description, image }) {
     const {db, auth} = init()

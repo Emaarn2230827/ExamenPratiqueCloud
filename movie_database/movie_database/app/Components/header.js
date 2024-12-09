@@ -28,9 +28,6 @@ function Header() {
 
         return () => unsubscribe(); // Nettoyage lors de la fin de l'utilisation
     }, [auth, router]);
-
-
-
     const fetchProfilePictures = async (currentUser) => {
         const listRef = ref(storage, `${currentUser.uid}/ProfilePicture`);
 
@@ -72,52 +69,33 @@ function Header() {
         }
     }, [user]);
 
-    // Appelé lorsqu'on envoie le formulaire
-    function logOut(e) {
-        e.preventDefault();
-
-        // Déconnexion
-        signOut(auth)
-            .then(() => {
-                console.log("Logged out");
-                router.push("../login");
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }
-
     return (
-  
-             <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-                <div className="container-fluid">
-                <a className="navbar-brand" href="../accueil">The Movie Database</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
-                        <a className="nav-link" href="../addMovie">➕Add Movie</a>        
-                    </li>
-                    </ul>
-                    <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    <li className="nav-item col-lg-3">
-                        {user && imageFiles.length > 0 && (
-                            <Link href={`../Profil/${user.uid}`} className="nav-link mx-5">
-                                <img src={imageFiles[0]} alt="logoConnexion" id="logoConnexion" className="rounded-circle" width={70} height={70} />
-                            </Link>
-                        )}
-                    </li>
-
-                </div>
-                </div>
-            </nav>
- 
-   
+        <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+            <div className="container-fluid">
+            <a className="navbar-brand" href="../accueil">The Movie Database</a>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                    <a className="nav-link" href="../addMovie">➕Add Movie</a>        
+                </li>
+                </ul>
+                <form className="d-flex" role="search">
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button className="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <li className="d-flex">
+                    {user && imageFiles.length > 0 && (
+                        <Link href={`../Profil/${user.uid}`} className="nav-link mx-5">
+                            <img src={imageFiles[0]} alt="logoConnexion" id="logoConnexion" className="rounded-circle" width={70} height={70} />
+                        </Link>
+                    )}
+                </li>
+            </div>
+            </div>
+        </nav>
     );
 }
 
